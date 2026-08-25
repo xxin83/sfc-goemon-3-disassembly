@@ -13,7 +13,9 @@ incbin ../assets/bank_96.bin:$1F03..$2203   ; $969F03 |
   incsrc data_bank96_96a203.asm
 incbin ../assets/bank_96.bin:$23C2..$39C2   ; $96A3C2 |
   incsrc data_bank96_b9c2.asm
-incbin ../assets/bank_96.bin:$3BAD..$7880   ; $96BBAD |
+incbin ../assets/bank_96.bin:$3BAD..$45AD   ; $96BBAD |
+  incsrc data_bank96_tail_sources.asm
+incbin ../assets/bank_96.bin:$766F..$7880   ; $96F66F |
 
 CODE_96F880:
   JSL.L CODE_FL_86C3A3                      ; $96F880 |

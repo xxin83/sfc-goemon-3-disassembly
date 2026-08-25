@@ -49,6 +49,11 @@ sizes `$00FC` and `$00C3`; both are stored in
 `$0088` headers. The intervening `$96BA25-$96BB24` bytes remain unchanged
 because the source table does not identify them as a separate transfer.
 
+The bounded tail sources from `$96C5AD` through `$96F66E` are represented in
+`disassembly/data_bank96_tail_sources.asm`; unreferenced gaps and labels such
+as `$96CBB0` remain in the original bank include until their callers are
+identified.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
