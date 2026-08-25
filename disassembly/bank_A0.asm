@@ -1,6 +1,7 @@
 org $A08000
 
-incbin ../assets/bank_A0.bin:$0000..$6F80   ; $A08000 |
+  incsrc data_bankA0_sources.asm
+incbin ../assets/bank_A0.bin:$6F51..$6F80   ; $A0EF51 |
 
 CODE_A0EF80:
   JSR.W CODE_FN_A0EFD6                      ; $A0EF80 |
