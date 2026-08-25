@@ -3,6 +3,7 @@
 - [Asset Table Format](asset-table.md)
 - [Konami SNES Compression Format](konami-snes-compression.md)
 - [Text Format](text-format.md)
+- [Text Pointer Table](goemon3-text-pointer-table.md)
 - [Resource Pipeline](resource-pipeline.md)
 - [Resource Transfer Index](resource-index.tsv)
 
@@ -10,6 +11,10 @@
 `tools/index_asset_table.py`. It records the transfer-table relationship
 between a resource, its destination, and its compressed ROM source; it does
 not claim that the source symbol is an uncompressed tile or font address.
+
+For the localization workflow, `tools/export_text_records.py` exports the
+27 pointer-table records as JSONL. Confirmed `$C0-$FF` compression commands
+are expanded, while unresolved `$B0-$BA` commands remain explicit tags.
 
 ## Bank Overview
 

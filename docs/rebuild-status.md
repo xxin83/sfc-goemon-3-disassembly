@@ -19,6 +19,9 @@ sources produces the same SHA-1 as `base.sfc`:
 - The first stream contains `F0`-`FF` nested references.  These are exported
   by `tools/resolve_text_pointer_table.py` to
   `docs/text-pointer-table.tsv`.
+- `tools/export_text_records.py` produces a loss-aware JSONL export for the
+  27 pointer-table entries. It expands confirmed compression commands and
+  preserves unresolved formatting commands as tags for translation review.
 
 ## Not Yet Runtime-Confirmed
 
