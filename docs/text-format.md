@@ -62,6 +62,25 @@ The following values have special meanings:
 
 ### Extended Tokens (0xB0-0xBF)
 
+The `$B0-$BA` commands are dispatched by the table at `$80:9DA8`:
+
+| Command | Verified behavior |
+| --- | --- |
+| `$B0` | Reads one 16-bit stream unit in the normal state; layout states use the shared character/control path. |
+| `$B1` | Same split as `$B0`; its carry result selects the continuation path. |
+| `$B2` | Reads one 16-bit value and applies the `$0400-$0BFF` range dispatch. |
+| `$B3` | Reads one 16-bit value and applies the parallel range dispatch. |
+| `$B4` | Reads one 16-bit value and passes it to the text setter. |
+| `$B5` | Reads a selector and a variable descriptor ending in `$FF`; it is not a direct pointer. |
+| `$B6` | Enters the layout-finalization path without an immediate stream payload. |
+| `$B7` | Reads one flags byte and processes nested segments until `$B8` or `$B9`. |
+| `$B8` | Sets layout mode `$7C44` to zero; the marker consumes no payload byte. |
+| `$B9` | Sets layout mode `$7C44` to one; the marker consumes no payload byte. |
+| `$BA` | Performs the layout/control transition and sets the next parser state. |
+
+The range-specific meanings of `$B2/$B3` values remain separate from the
+stream grammar and are not treated as text pointers.
+
 These values are returned as stream tokens by `get_next_char`. The upper-level
 reader handles some values in context: `$B0/$B1` and `$B8/$B9` consume an
 additional 16-bit value in the routines around `$80A3EC` and `$80A398`.

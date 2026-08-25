@@ -4768,6 +4768,8 @@ CODE_809EFB:
 
 
 CODE_809F04:
+  ; $B0: normal state consumes one 16-bit stream unit; layout states use
+  ; the shared character/control path.
   LDA.W $7C3A                               ; $809F04 |
   BNE CODE_809F2A                           ; $809F07 |
   JSR.W CODE_FN_80A65B                      ; $809F09 |
@@ -4847,6 +4849,8 @@ CODE_809F74:
 
 
 CODE_809F77:
+  ; $B1: same stream-unit/layout split as $B0, with carry selecting the
+  ; caller's continuation path.
   LDA.W $7C3A                               ; $809F77 |
   BNE CODE_809F2A                           ; $809F7A |
   JSR.W CODE_FN_80A65B                      ; $809F7C |
@@ -5449,11 +5453,13 @@ CODE_JP_80A344:
 
 
 CODE_80A356:
+  ; $B8 selects layout mode zero before dispatching the current state.
   STZ.W $7C44                               ; $80A356 |
   BRA CODE_80A361                           ; $80A359 |
 
 
 CODE_80A35B:
+  ; $B9 selects layout mode one; the marker has no payload byte.
   LDA.W #$0001                              ; $80A35B |
 
   STA.W $7C44                               ; $80A35E |
