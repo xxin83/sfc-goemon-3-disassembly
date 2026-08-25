@@ -68,6 +68,18 @@ The report separates reusable blank entries from reserved controls and
 occupied entries, and records each candidate's runtime table address and
 tilemap words.
 
+After drawing the replacement tiles into the editable font image, patch safe
+direct slots with a JSON assignment such as `{"0x01": 42}`:
+
+```text
+python tools/patch_single_byte_slots.py goemon3.sfc assignments.json goemon3-slots.sfc
+```
+
+The patcher writes the normal and red tilemap words together, rejects control
+codes and extended remap slots, and never modifies the input ROM.  The glyph
+label still needs to be added to `data/text-code-table.json` so exporters and
+encoders use the same assignment.
+
 To create a new ROM with an in-place replacement:
 
 ```text
