@@ -1,6 +1,8 @@
 org $968000
 
-incbin ../assets/bank_96.bin:$0000..$0CFB   ; $968000 |
+incbin ../assets/bank_96.bin:$0000..$0AB9   ; $968000 |
+
+  incsrc data_logo_support_968ab9.asm
 
 VRAM_968CFB:
   incsrc data_font_968cfb.asm

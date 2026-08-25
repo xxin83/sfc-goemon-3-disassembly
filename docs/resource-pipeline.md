@@ -27,6 +27,10 @@ font stream at `$968CFB-$968EF2`. Its bytes are kept in
 `disassembly/data_font_968cfb.asm`; the block remains compressed by design and
 is fed through the normal `$84` decompressor at runtime.
 
+The adjacent logo-support sources `$968AB9-$968CFA` are likewise isolated in
+`disassembly/data_logo_support_968ab9.asm`; their boundaries come directly
+from the next `$88` source pointers.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
