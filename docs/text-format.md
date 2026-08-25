@@ -70,6 +70,21 @@ maps to `$80A02A`, consumes one selector byte, and sets the text-layout state
 at `$7C4C`; it is not a two-byte pointer command. The remaining payload
 semantics are not yet fully named.
 
+The currently verified handler shape is:
+
+| Token | Handler | Observed payload shape |
+| ----- | ------- | ---------------------- |
+| `$B0` | `$809F04` | One 16-bit value; a second value may be read depending on layout state |
+| `$B1` | `$809F77` | One 16-bit value; a second value may be read depending on layout state |
+| `$B2` | `$80A935` | One 16-bit value |
+| `$B3` | `$80ABCD` | One 16-bit value |
+| `$B4` | `$80A011` | One 16-bit value, then switches text stream |
+| `$B5` | `$80A02A` | One byte selector |
+| `$B6` | `$80A04E` | No immediate payload observed |
+| `$B7` | `$80A1C2` | Variable-length descriptor, terminator/shape still being traced |
+| `$B8/$B9` | `$80A356/$80A35B` | Layout mode markers; follow-up payload is context-dependent |
+| `$BA` | `$80A344` | Record/control transition |
+
 ### Compression Commands (0xC0-0xFF)
 
 For commands that produce multiple characters, the output length is determined by the command byte.
