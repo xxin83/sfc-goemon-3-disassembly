@@ -22,6 +22,25 @@ python tools/snes_2bpp.py png-to-chr output/system-font.png output/system-font-e
 The converter uses four grayscale levels and preserves the SNES plane order;
 an unedited PNG round-trips byte-for-byte.
 
+The matching compressor is available as:
+
+```text
+python tools/konami_c.py output/system-font-edited.chr output/system-font.konamiz
+```
+
+The generated block must fit the original `$1F8` bytes at `$968CFB`, or it
+must be relocated and the source pointer at `$888020` changed. The compressor
+is validated separately against the existing Python decompressor.
+
+To create a new ROM with an in-place replacement:
+
+```text
+python tools/patch_system_font.py goemon3.sfc output/system-font-edited.chr output/goemon3-font.sfc
+```
+
+The input ROM is never modified. The generated ROM must still be assembled or
+checked against the original source layout before it is used for a release.
+
 Extract it for editing with:
 
 ```text

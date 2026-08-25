@@ -40,12 +40,14 @@ The following command types are used during decompression:
 |-----------|-------------------------|-------------|--------------------------------------------|
 | 0x00-0x7F | 0xx - LZ Copy           | 1           | Copy data from sliding window (see below)  |
 | 0x80-0x9F | 100 - Raw Copy          | L           | Copy L raw bytes                           |
-| 0xA0-0xBF | 101 - RLE Pair          | 1           | Repeat the sequence `[00 V]` (L + 2) times |
+| 0xA0-0xBF | 101 - RLE Pair          | L           | Emit `[00 V]` pairs; each pair has its own following `V` byte |
 | 0xC0-0xDF | 110 - RLE Byte          | 1           | Repeat byte V (L + 2) times                |
 | 0xE0-0xFE | 111 - Zero RLE          | 0           | Repeat zero byte (L + 2) times             |
 | 0xFF      | 111 - Extended Zero RLE | 1           | Repeat zero byte (N + 2) times             |
 
-`V` and `N` denote the value of the following extra byte.
+`V` and `N` denote values in the following extra bytes. For an RLE-pair
+command, the command length is the number of following values, not one value
+repeated several times.
 
 During decompression, all output bytes are written to a buffer, which also serves as the sliding window for LZ references.
 
