@@ -4,6 +4,12 @@
 - [Konami SNES Compression Format](konami-snes-compression.md)
 - [Text Format](text-format.md)
 - [Resource Pipeline](resource-pipeline.md)
+- [Resource Transfer Index](resource-index.tsv)
+
+`resource-index.tsv` is generated from `disassembly/bank_88.asm` with
+`tools/index_asset_table.py`. It records the transfer-table relationship
+between a resource, its destination, and its compressed ROM source; it does
+not claim that the source symbol is an uncompressed tile or font address.
 
 ## Bank Overview
 
