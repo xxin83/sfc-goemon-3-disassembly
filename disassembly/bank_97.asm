@@ -1,6 +1,8 @@
 org $978000
 
-incbin ../assets/bank_97.bin:$0000..$7C80   ; $978000 |
+incbin ../assets/bank_97.bin:$0000..$0581   ; $978000 |
+  incsrc data_bank97_sources.asm
+incbin ../assets/bank_97.bin:$7C5F..$7C80   ; $97FC5F |
 
 CODE_FL_97FC80:
   LDA.B $22,X                               ; $97FC80 |
