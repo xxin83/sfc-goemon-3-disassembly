@@ -70,6 +70,10 @@ Bank `$9A` now has 6 referenced compressed blocks in
 `disassembly/data_bank9a_sources.asm`, ending at `$9AF646`; the remaining
 gaps and bank tail remain raw.
 
+Bank `$9F` now has 6 referenced compressed blocks in
+`disassembly/data_bank9f_sources.asm`, ending at `$9FFB9D`; the remaining
+gaps and bank tail remain raw.
+
 Bank `$9E` now has 3 referenced compressed blocks in
 `disassembly/data_bank9e_sources.asm`, ending at `$9EFF45`; the remaining
 gaps and bank tail remain raw.
