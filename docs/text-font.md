@@ -123,8 +123,26 @@ be recompressed or relocated, and the asset source pointer at `$888020` must
 be updated if the replacement no longer fits the original block.
 
 The text byte table and the font tile index relationship are separate layers:
-changing a glyph tile does not change the text encoding, while changing the
+
+Changing a glyph tile does not change the text encoding, while changing the
 encoding requires updating the text decoder and the translation table.
+
+## Runtime Character Upload Path
+
+The confirmed single-byte character path is:
+
+1. `put_char` at `$809C64` resolves the byte through `$8188E9` (and the
+   `$88-$AF` remap table), producing a tile word such as `$0300 + tile`.
+2. `CODE_FN_809D2F` calculates the destination tilemap position as
+   `$5000 + row * $20 + column` (the special room mode uses `$4800`).
+3. The tile word is written to the WRAM character buffer at `$7E7400`.
+4. The DMA descriptor queue begins at `$7E0000`; it uses the `$7E7400`
+   buffer as its source and uploads the tilemap data to VRAM.
+
+This is distinct from the system-font upload at `$88801C`, which writes the
+compressed font result to VRAM `$4000`. A font replacement alone does not alter
+existing text; the code table or the generated `$7E7400` tile words must also
+select the new tile.
 
 ## Runtime VRAM Probe
 
