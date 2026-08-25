@@ -1,6 +1,7 @@
 org $9B8000
 
-incbin ../assets/bank_9B.bin:$0000..$7EC0   ; $9B8000 |
+  incsrc data_bank9b_sources.asm
+incbin ../assets/bank_9B.bin:$71B4..$7EC0   ; $9BF1B4 |
 
 CODE_FL_9BFEC0:
   PHB                                       ; $9BFEC0 |
