@@ -25,6 +25,15 @@ class SingleBytePatchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             slots.patch_slots(rom, {0x88: 1})
 
+    def test_force_replaces_an_existing_glyph(self):
+        rom = bytearray(0x200000)
+        table = slots.lorom_file_offset(slots.GLYPH_TABLE_CPU)
+        for code in range(0xB0):
+            rom[table + code * 4 : table + code * 4 + 4] = bytes.fromhex("00 03 00 03")
+        rom[table + 0x1E * 4 : table + 0x1E * 4 + 4] = bytes.fromhex("05 03 15 03")
+        result = slots.patch_slots(bytes(rom), {0x1E: 0x38}, force=True)
+        self.assertEqual(result[table + 0x1E * 4 : table + 0x1E * 4 + 4], bytes.fromhex("38 03 48 03"))
+
 
 if __name__ == "__main__":
     unittest.main()

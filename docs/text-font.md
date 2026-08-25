@@ -80,6 +80,16 @@ codes and extended remap slots, and never modifies the input ROM.  The glyph
 label still needs to be added to `data/text-code-table.json` so exporters and
 encoders use the same assignment.
 
+Replacing an existing Japanese glyph is intentionally explicit:
+
+```text
+python tools/patch_single_byte_slots.py goemon3.sfc assignments.json translated.sfc --force
+```
+
+Use `--force` only when the corresponding text bytes are also being translated;
+otherwise every occurrence of the original glyph will display the replacement
+character.
+
 To create a new ROM with an in-place replacement:
 
 ```text
