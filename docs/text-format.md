@@ -82,7 +82,7 @@ The currently verified handler shape is:
 | `$B4` | `$80A011` | One 16-bit value, then switches text stream |
 | `$B5` | `$80A02A` | One selector byte plus a variable `$FF`-terminated descriptor |
 | `$B6` | `$80A04E` | No immediate payload observed |
-| `$B7` | `$80A1C2` | Variable-length descriptor, terminator/shape still being traced |
+| `$B7` | `$80A1C2` | One flags byte, then a nested text segment delimited by `$B8/$B9` |
 | `$B8/$B9` | `$80A356/$80A35B` | Layout mode markers; follow-up payload is context-dependent |
 | `$BA` | `$80A344` | Record/control transition |
 
@@ -103,6 +103,12 @@ when the selector is not `$FF`:
 The first record provides the concrete prefix `B5 00 00 03 78 19 04 FF`.
 The field names above remain intentionally descriptive until emulator tracing
 confirms their visual meaning.
+
+`$B7` has a different structure: `$80A1C2` reads one byte into `$7C3E`,
+advances the stream pointer, and saves the following position in `$7C3C`.
+The later loop at `$80A314` reads that nested segment until it sees `$B8` or
+`$B9`. Therefore the byte after `$B7` is a flags/variant value, not a direct
+text offset.
 
 ### Compression Commands (0xC0-0xFF)
 
