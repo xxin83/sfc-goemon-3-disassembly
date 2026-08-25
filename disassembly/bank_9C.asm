@@ -1,6 +1,7 @@
 org $9C8000
 
-incbin ../assets/bank_9C.bin:$0000..$7D80   ; $9C8000 |
+  incsrc data_bank9c_sources.asm
+incbin ../assets/bank_9C.bin:$7D53..$7D80   ; $9CFD53 |
 
 CODE_9CFD80:
   JSR.W CODE_FN_9CFDA1                      ; $9CFD80 |
