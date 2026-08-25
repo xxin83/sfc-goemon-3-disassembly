@@ -66,6 +66,10 @@ Bank `$99` now has 23 referenced compressed blocks in
 `disassembly/data_bank99_sources.asm`, ending at `$99FC2C`; the remaining
 gaps and final bank tail are left as raw data.
 
+Bank `$9A` now has 6 referenced compressed blocks in
+`disassembly/data_bank9a_sources.asm`, ending at `$9AF646`; the remaining
+gaps and bank tail remain raw.
+
 Bank `$97` now has 35 referenced compressed blocks extracted into
 `disassembly/data_bank97_sources.asm`, covering `$978581-$97FC5E`; gaps
 between the blocks remain raw `incbin` data. Each block was bounded by its
