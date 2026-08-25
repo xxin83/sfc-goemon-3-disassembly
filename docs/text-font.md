@@ -58,6 +58,16 @@ available code slots and 96-tile font budget, but it avoids changing the
 control parser.  A full DBCS implementation should be treated as a separate
 engine change rather than an extension of `data/text-code-table.json` alone.
 
+Generate the current slot classification before assigning translation glyphs:
+
+```text
+python tools/analyze_single_byte_slots.py goemon3.sfc --output output/single-byte-slots.json
+```
+
+The report separates reusable blank entries from reserved controls and
+occupied entries, and records each candidate's runtime table address and
+tilemap words.
+
 To create a new ROM with an in-place replacement:
 
 ```text
