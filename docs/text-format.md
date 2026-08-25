@@ -189,3 +189,11 @@ The runtime reader is visible in `disassembly/bank_80.asm`: `$80A65B` reads
 character decoder starts at `$80A502`; its `$F0-$FF` path stores the copy source
 in `!r_text_copy_ptr_l` and reads source bytes directly, so copy sources are
 not recursively decoded as command streams.
+
+## Single-Byte Encoding
+
+The exported markup can be encoded back to single-byte text tokens with
+`tools/encode_text_markup.py`. Explicit control tags and `$B5` descriptors are
+preserved; unsupported glyphs fail loudly rather than being replaced with an
+unrelated character. This is an encoding primitive, not yet a ROM patcher:
+compressed record repacking and capacity checks remain separate work.
