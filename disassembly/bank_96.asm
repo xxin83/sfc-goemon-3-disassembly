@@ -8,7 +8,8 @@ VRAM_968CFB:
   incsrc data_font_968cfb.asm
 
   incsrc data_bank96_small_sources.asm
-incbin ../assets/bank_96.bin:$1E44..$7880   ; $969E44 |
+  incsrc data_vram_969e44.asm
+incbin ../assets/bank_96.bin:$1F03..$7880   ; $969F03 |
 
 CODE_96F880:
   JSL.L CODE_FL_86C3A3                      ; $96F880 |

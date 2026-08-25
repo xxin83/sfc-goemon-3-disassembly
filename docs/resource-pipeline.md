@@ -37,6 +37,10 @@ The same extraction now covers `$968EF3-$969176` and `$969D44-$969E43` in
 header `$8BCD` independently proves a 3021-byte compressed block with the
 interleaving flag set, matching the next source pointer exactly.
 
+`VRAM_969E44` is separately bounded by its own `$00BF` header, so only
+`$969E44-$969F02` is extracted; the following bytes up to `$96A203` are not
+assumed to belong to that resource.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
