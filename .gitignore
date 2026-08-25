@@ -11,6 +11,10 @@ assets/
 Thumbs.db
 Desktop.ini
 
+# Python tooling
+__pycache__/
+*.pyc
+
 # macOS
 *.alias
 .DS_Store
