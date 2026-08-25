@@ -197,3 +197,8 @@ The exported markup can be encoded back to single-byte text tokens with
 preserved; unsupported glyphs fail loudly rather than being replaced with an
 unrelated character. This is an encoding primitive, not yet a ROM patcher:
 compressed record repacking and capacity checks remain separate work.
+
+For records that fit without recompression, `tools/patch_text_records.py` can
+write an edited JSONL export back to a new ROM image. It validates the pointer
+table boundary, the record capacity, and the `<03><00>` end marker before
+writing; it never modifies the input ROM in place.
