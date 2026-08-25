@@ -55,6 +55,16 @@ The text byte table and the font tile index relationship are separate layers:
 changing a glyph tile does not change the text encoding, while changing the
 encoding requires updating the text decoder and the translation table.
 
+## Runtime VRAM Probe
+
+Mesen save states restore VRAM, so loading a state can hide a ROM font patch
+that was uploaded during boot.  The repository includes
+`tools/mesen_font_vram_probe.lua`, which rewrites tile 5 through the SNES VRAM
+ports on every frame.  Load it in Mesen's script window (`Ctrl+N`, `Ctrl+O`,
+then `F5`) while a dialogue state is active.  A solid tile in the dialogue is
+then a direct visual check of the runtime tile mapping, independent of the
+compressed font block being restored by the save state.
+
 The runtime character mapping can be exported with:
 
 ```text
