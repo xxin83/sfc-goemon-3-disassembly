@@ -64,9 +64,14 @@ The following values have special meanings:
 
 These sequences contain additional data associated with the text.
 
-| Code | Command   | Extra Bytes | Description                          |
-| ---- | --------- | ----------: | ------------------------------------ |
-| 0xB4 | Next Text | 2           | 16-bit text offset to the next entry |
+| Code | Command          | Extra Bytes | Description                                        |
+| ---- | ---------------- | ----------: | -------------------------------------------------- |
+| 0xB5 | Runtime-dependent | 2           | Observed in pointer-table records; unconfirmed    |
+
+`$B5` is observed at the start of records referenced by the table at
+`$87C28F`. Its two-byte payload must not be treated as a text pointer until
+runtime tracing confirms that behavior. The previous `$B4 = Next Text`
+description was not supported by the current ROM evidence and is removed.
 
 ### Compression Commands (0xC0-0xFF)
 
@@ -121,3 +126,7 @@ which corresponds to ROM address `$BD955A`.
 
 The referenced bytes are treated as character codes, not text stream commands.
 Values in the 0xC0-0xFF range are therefore not normally expected in the referenced data.
+
+The runtime reader is visible in `disassembly/bank_80.asm`: `$80A65B` reads
+16-bit stream units from `$B68000` or `$BD0000` using the pointer at
+`$7E:7C16`, and `$80A66F` dispatches the resulting command value.
