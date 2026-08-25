@@ -12,6 +12,16 @@ The decompressed result is `0x600` bytes:
 - SNES `2bpp` tile layout
 - no tile deinterleave flag
 
+Convert the extracted CHR to an editable grayscale PNG and back with:
+
+```text
+python tools/snes_2bpp.py chr-to-png output/system-font.chr output/system-font.png --columns 16 --scale 4
+python tools/snes_2bpp.py png-to-chr output/system-font.png output/system-font-edited.chr --columns 16 --scale 4
+```
+
+The converter uses four grayscale levels and preserves the SNES plane order;
+an unedited PNG round-trips byte-for-byte.
+
 Extract it for editing with:
 
 ```text
