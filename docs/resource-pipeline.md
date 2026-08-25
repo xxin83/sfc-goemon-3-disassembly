@@ -45,6 +45,10 @@ assumed to belong to that resource.
 sizes `$00FC` and `$00C3`; both are stored in
 `disassembly/data_bank96_96a203.asm`.
 
+`VRAM_96B9C2` and `VRAM_96BB25` are also extracted by their `$0063` and
+`$0088` headers. The intervening `$96BA25-$96BB24` bytes remain unchanged
+because the source table does not identify them as a separate transfer.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source

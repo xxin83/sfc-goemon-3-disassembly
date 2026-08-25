@@ -11,7 +11,9 @@ VRAM_968CFB:
   incsrc data_vram_969e44.asm
 incbin ../assets/bank_96.bin:$1F03..$2203   ; $969F03 |
   incsrc data_bank96_96a203.asm
-incbin ../assets/bank_96.bin:$23C2..$7880   ; $96A3C2 |
+incbin ../assets/bank_96.bin:$23C2..$39C2   ; $96A3C2 |
+  incsrc data_bank96_b9c2.asm
+incbin ../assets/bank_96.bin:$3BAD..$7880   ; $96BBAD |
 
 CODE_96F880:
   JSL.L CODE_FL_86C3A3                      ; $96F880 |
