@@ -13,6 +13,11 @@ except ImportError:
     from export_text_records import TABLE_COUNT, TABLE_FILE_OFFSET, pointer_targets, record_end
     from text_codec import encode_markup
 
+try:
+    from .compress_text_stream import compress_stream
+except ImportError:
+    from compress_text_stream import compress_stream
+
 
 def load_rows(path: Path) -> list[dict[str, object]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
@@ -34,7 +39,7 @@ def build_patches(rom: bytes, rows: list[dict[str, object]]) -> list[tuple[int, 
         declared_end = int(str(row["file_end"])[1:], 16)
         if (declared_start, declared_end) != (start, end):
             raise ValueError(f"record {index} boundary does not match the ROM")
-        encoded = encode_markup(str(row["text"]))
+        encoded = compress_stream(encode_markup(str(row["text"])))
         if not encoded.endswith(b"\x03\x00"):
             raise ValueError(f"record {index} must end with <03><00>")
         capacity = end - start

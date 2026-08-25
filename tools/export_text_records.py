@@ -57,6 +57,11 @@ GLYPHS = {
     0xAC: "ぽ", 0xAD: "ピ",
 }
 
+DEFAULT_GLYPHS = GLYPHS
+CODE_TABLE_PATH = Path(__file__).resolve().parent.parent / "data" / "text-code-table.json"
+if CODE_TABLE_PATH.exists():
+    GLYPHS = {int(code, 16): value for code, value in json.loads(CODE_TABLE_PATH.read_text(encoding="utf-8")).items()}
+
 
 PREDEFINED = {
     0xD0: [0x24, 0x29, 0x81, 0x7C, 0x04],
