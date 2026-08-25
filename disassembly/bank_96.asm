@@ -1,6 +1,7 @@
 org $968000
 
-incbin ../assets/bank_96.bin:$0000..$0AB9   ; $968000 |
+  incsrc data_vram_968000.asm
+incbin ../assets/bank_96.bin:$00B9..$0AB9   ; $9680B9 |
 
   incsrc data_logo_support_968ab9.asm
 
