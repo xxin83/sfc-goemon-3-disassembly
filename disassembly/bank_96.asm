@@ -7,7 +7,8 @@ incbin ../assets/bank_96.bin:$0000..$0AB9   ; $968000 |
 VRAM_968CFB:
   incsrc data_font_968cfb.asm
 
-incbin ../assets/bank_96.bin:$0EF3..$7880   ; $968EF3 |
+  incsrc data_bank96_small_sources.asm
+incbin ../assets/bank_96.bin:$1E44..$7880   ; $969E44 |
 
 CODE_96F880:
   JSL.L CODE_FL_86C3A3                      ; $96F880 |

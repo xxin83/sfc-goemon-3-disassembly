@@ -31,6 +31,11 @@ The adjacent logo-support sources `$968AB9-$968CFA` are likewise isolated in
 `disassembly/data_logo_support_968ab9.asm`; their boundaries come directly
 from the next `$88` source pointers.
 
+The same extraction now covers `$968EF3-$969176` and `$969D44-$969E43` in
+`disassembly/data_bank96_small_sources.asm`. The intervening
+`$969177-$969D43` block remains an `incbin` because it has not yet been
+semantically decomposed.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
