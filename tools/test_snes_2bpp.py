@@ -2,7 +2,10 @@ import unittest
 
 from PIL import Image
 
-from .snes_2bpp import chr_to_image, image_to_chr
+try:
+    from .snes_2bpp import chr_to_image, image_to_chr
+except ImportError:
+    from snes_2bpp import chr_to_image, image_to_chr
 
 
 class Snes2bppTests(unittest.TestCase):

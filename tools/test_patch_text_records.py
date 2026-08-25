@@ -3,8 +3,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from .export_text_records import pointer_targets, record_end
-from .patch_text_records import build_patches
+try:
+    from .export_text_records import pointer_targets, record_end
+    from .patch_text_records import build_patches
+except ImportError:
+    from export_text_records import pointer_targets, record_end
+    from patch_text_records import build_patches
 
 
 class TextPatchTests(unittest.TestCase):

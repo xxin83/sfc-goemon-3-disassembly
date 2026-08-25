@@ -1,6 +1,9 @@
 import unittest
 
-from .patch_system_font import FONT_CAPACITY, patch_font
+try:
+    from .patch_system_font import FONT_CAPACITY, patch_font
+except ImportError:
+    from patch_system_font import FONT_CAPACITY, patch_font
 
 
 class SystemFontPatchTests(unittest.TestCase):

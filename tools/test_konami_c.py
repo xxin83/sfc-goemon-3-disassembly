@@ -1,7 +1,11 @@
 import unittest
 
-from .konami_c import compress
-from .konami_d import konami_decompress
+try:
+    from .konami_c import compress
+    from .konami_d import konami_decompress
+except ImportError:
+    from konami_c import compress
+    from konami_d import konami_decompress
 
 
 class KonamiCompressionTests(unittest.TestCase):

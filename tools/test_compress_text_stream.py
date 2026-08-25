@@ -1,6 +1,9 @@
 import unittest
 
-from .compress_text_stream import compress_stream
+try:
+    from .compress_text_stream import compress_stream
+except ImportError:
+    from compress_text_stream import compress_stream
 
 
 class TextCompressionTests(unittest.TestCase):
