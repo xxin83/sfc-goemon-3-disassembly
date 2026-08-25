@@ -86,6 +86,24 @@ The currently verified handler shape is:
 | `$B8/$B9` | `$80A356/$80A35B` | Layout mode markers; follow-up payload is context-dependent |
 | `$BA` | `$80A344` | Record/control transition |
 
+For `$B5`, the handler at `$80A02A` consumes the following descriptor shape
+when the selector is not `$FF`:
+
+| Relative byte | Runtime destination | Observed role |
+| ------------- | ------------------ | ------------- |
+| `+0` | `$7C50` | Selector |
+| `+1` | `$7C4E` | Layout mode |
+| `+2` | `$7C2C` | Count transformed according to `$7C2E` |
+| `+3` | `$7C54/$7C56` | Width/span pair derived from the previous value |
+| `+4` | `$7C2A` | Layout field |
+| `+5` | `$7C26` | Layout field |
+| `+6` | `$7C58` | Layout field |
+| `+7...` | text pointer | Variable tail consumed through `$FF` |
+
+The first record provides the concrete prefix `B5 00 00 03 78 19 04 FF`.
+The field names above remain intentionally descriptive until emulator tracing
+confirms their visual meaning.
+
 ### Compression Commands (0xC0-0xFF)
 
 For commands that produce multiple characters, the output length is determined by the command byte.
