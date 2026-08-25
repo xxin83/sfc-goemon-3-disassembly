@@ -32,6 +32,32 @@ The generated block must fit the original `$1F8` bytes at `$968CFB`, or it
 must be relocated and the source pointer at `$888020` changed. The compressor
 is validated separately against the existing Python decompressor.
 
+## Chinese Capacity Assessment
+
+The current block decompresses to `0x600` bytes: `96` tiles.  Its original
+compressed form is `496` bytes inside a `504`-byte slot, leaving only `8` bytes
+of in-place growth.  Adding a meaningful Chinese glyph set therefore requires
+relocating the compressed block or adding another VRAM upload; it cannot be
+solved by putting more bytes into the existing slot.
+
+The runtime table has single-byte entries for `$00-$AF`.  The `$88-$AF`
+entries are remapped through the extended map, but they still resolve to a
+single normalized table entry.  The `$B0-$BA` handlers are layout and control
+records, not a generic lead-byte/trail-byte glyph decoder.  Consequently, a
+DBCS translation needs all of the following changes:
+
+1. A lead/trail decoder state in the text reader.
+2. A two-byte character map that resolves to a tilemap word.
+3. Additional glyph storage and a VRAM upload path.
+4. Text wrapping and width handling for the new glyph units.
+
+For a first Chinese patch, the practical route is a selected single-byte
+subset: reuse unused `$00-$AF` slots, repoint their glyph table entries to
+newly drawn tiles, and keep the existing decoder.  This is limited by the
+available code slots and 96-tile font budget, but it avoids changing the
+control parser.  A full DBCS implementation should be treated as a separate
+engine change rather than an extension of `data/text-code-table.json` alone.
+
 To create a new ROM with an in-place replacement:
 
 ```text
