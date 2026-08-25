@@ -1,6 +1,11 @@
 org $968000
 
-incbin ../assets/bank_96.bin:$0000..$7880   ; $968000 |
+incbin ../assets/bank_96.bin:$0000..$0CFB   ; $968000 |
+
+VRAM_968CFB:
+  incsrc data_font_968cfb.asm
+
+incbin ../assets/bank_96.bin:$0EF3..$7880   ; $968EF3 |
 
 CODE_96F880:
   JSL.L CODE_FL_86C3A3                      ; $96F880 |

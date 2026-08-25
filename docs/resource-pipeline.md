@@ -22,6 +22,11 @@ source entry uses a 24-bit ROM pointer. The `$400000` bit is a source flag:
 the remaining address selects an uncompressed block; without the flag the
 source is passed to the Konami decompressor.
 
+The first source block converted from `incbin` is `VRAM_968CFB`, the system
+font stream at `$968CFB-$968EF2`. Its bytes are kept in
+`disassembly/data_font_968cfb.asm`; the block remains compressed by design and
+is fed through the normal `$84` decompressor at runtime.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
