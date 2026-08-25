@@ -33,8 +33,9 @@ from the next `$88` source pointers.
 
 The same extraction now covers `$968EF3-$969176` and `$969D44-$969E43` in
 `disassembly/data_bank96_small_sources.asm`. The intervening
-`$969177-$969D43` block remains an `incbin` because it has not yet been
-semantically decomposed.
+`$969177-$969D43` block is now in `disassembly/data_vram_969177.asm`; its
+header `$8BCD` independently proves a 3021-byte compressed block with the
+interleaving flag set, matching the next source pointer exactly.
 
 ## Decompression
 

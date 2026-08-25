@@ -44,7 +44,7 @@ VRAM_968EF3:
   db $7E,$9D,$7E,$BE,$7E,$DF,$7F,$00,$7F,$21,$7F,$42,$7F,$63,$7F,$84 ; $969163
   db $7F,$A5,$57,$C6 ; $969173
 
-incbin ../assets/bank_96.bin:$1177..$1D44   ; unconverted block $969177-$969D43
+incsrc data_vram_969177.asm
 
 VRAM_969D44:
   ; Compressed source block $969D44-$969E43
