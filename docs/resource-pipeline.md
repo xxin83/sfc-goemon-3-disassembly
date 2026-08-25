@@ -58,6 +58,10 @@ The bounded tail sources from `$96C5AD` through `$96F66E` are represented in
 as `$96CBB0` remain in the original bank include until their callers are
 identified.
 
+Bank `$98` now has 24 referenced compressed blocks extracted into
+`disassembly/data_bank98_sources.asm`, ending at `$98F35E`; all gaps between
+those blocks remain `incbin` data.
+
 Bank `$97` now has 35 referenced compressed blocks extracted into
 `disassembly/data_bank97_sources.asm`, covering `$978581-$97FC5E`; gaps
 between the blocks remain raw `incbin` data. Each block was bounded by its

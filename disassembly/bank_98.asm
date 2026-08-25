@@ -1,6 +1,7 @@
 org $988000
 
-incbin ../assets/bank_98.bin:$0000..$7E80   ; $988000 |
+  incsrc data_bank98_sources.asm
+incbin ../assets/bank_98.bin:$735F..$7E80   ; $98F35F |
 
 CODE_98FE80:
   JSL.L CODE_FL_97FC80                      ; $98FE80 |
