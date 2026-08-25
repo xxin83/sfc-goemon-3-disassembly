@@ -11,11 +11,12 @@ In the disassembly source these bytes are now exposed as
 offsets and assembles byte-for-byte identically to the baseline ROM.
 
 The target is not a flat text stream.  Its records contain special commands
-and `F0`-`FF` copy commands whose two-byte arguments reference another text
-offset.  Therefore text extraction must preserve a graph of references:
+and `F0`-`FF` copy commands whose two-byte arguments reference a source span
+of character data.  Therefore extraction must preserve the copy-source edges
+even though the runtime does not recursively decode the referenced bytes:
 
 ```text
-$87C289 -> $557E -> $B6D57E -> F0/F1/F2... -> another 16-bit text offset
+$87C289 -> $557E -> $B6D57E -> F0/F1/F2... -> copy-source offset
 ```
 
 Generate a reproducible table with:

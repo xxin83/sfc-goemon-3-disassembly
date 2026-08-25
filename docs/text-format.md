@@ -113,7 +113,7 @@ Each text is terminated by 0x00.
 #### Copy from Offset (0xF0-0xFF)
 
 The command is followed by a two-byte text offset.
-The referenced text is copied to the output.
+The referenced bytes are copied to the output as character codes.
 
 For example:
 
@@ -129,4 +129,7 @@ Values in the 0xC0-0xFF range are therefore not normally expected in the referen
 
 The runtime reader is visible in `disassembly/bank_80.asm`: `$80A65B` reads
 16-bit stream units from `$B68000` or `$BD0000` using the pointer at
-`$7E:7C16`, and `$80A66F` dispatches the resulting command value.
+`$7E:7C16`, and `$80A66F` dispatches the resulting command value. The general
+character decoder starts at `$80A502`; its `$F0-$FF` path stores the copy source
+in `!r_text_copy_ptr_l` and reads source bytes directly, so copy sources are
+not recursively decoded as command streams.

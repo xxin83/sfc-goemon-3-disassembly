@@ -1,8 +1,8 @@
 """Resolve the known Goemon 3 text pointer table and nested copy references.
 
 The table stores 16-bit text offsets.  The text stream can contain F0-FF
-commands whose two-byte argument is another text offset, so a flat pointer
-dump is not sufficient for this game.
+commands whose two-byte argument is a character-data source offset, so a flat
+pointer dump is not sufficient for this game.
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ def text_offset_to_snes(offset: int) -> int:
 
 
 def scan_nested_offsets(data: bytes, start: int, window: int):
-    """Return nested offsets without pretending every byte is text.
+    """Return copy-source offsets without pretending every byte is text.
 
     F0-FF is documented as a three-byte copy command.  B5 is retained as an
     observed special command with a two-byte argument.  Other B0-BF bytes are
