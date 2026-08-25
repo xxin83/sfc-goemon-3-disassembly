@@ -25,3 +25,14 @@ be updated if the replacement no longer fits the original block.
 The text byte table and the font tile index relationship are separate layers:
 changing a glyph tile does not change the text encoding, while changing the
 encoding requires updating the text decoder and the translation table.
+
+The runtime character mapping can be exported with:
+
+```text
+python tools/export_glyph_map.py goemon3.sfc --output output/glyph-map.jsonl
+```
+
+Each row records the original byte, the normalized code used by the extended
+character path, and the two tilemap words consumed by `put_char` at `$809C64`.
+The words include PPU attributes; they are not being misidentified as raw
+compressed font bytes.
