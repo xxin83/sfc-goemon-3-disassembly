@@ -22,7 +22,8 @@ sources produces the same SHA-1 as `base.sfc`:
 
 ## Not Yet Runtime-Confirmed
 
-- The exact semantics of the context-dependent `$B0/$B1/$B8/$B9` payloads.
+- The exact descriptor fields for `$B5`, plus context-dependent
+  `$B0/$B1/$B8/$B9` payloads.
 - Record termination and the complete grammar for `$B0`-`$EF` formatting
   commands.
 - The full relationship between the text records, their graphics resources,

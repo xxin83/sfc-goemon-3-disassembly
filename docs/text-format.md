@@ -66,9 +66,10 @@ These values are returned as stream tokens by `get_next_char`. The upper-level
 reader handles some values in context: `$B0/$B1` and `$B8/$B9` consume an
 additional 16-bit value in the routines around `$80A3EC` and `$80A398`.
 The dispatch table at `$809DA8` maps `$B0-$BA` to separate handlers. `$B5`
-maps to `$80A02A`, consumes one selector byte, and sets the text-layout state
-at `$7C4C`; it is not a two-byte pointer command. The remaining payload
-semantics are not yet fully named.
+maps to `$80A02A`, consumes one selector byte followed by a variable
+descriptor terminated by `$FF`, and sets the text-layout state at `$7C4C`;
+it is not a two-byte pointer command. The remaining descriptor field semantics
+are not yet fully named.
 
 The currently verified handler shape is:
 
@@ -79,7 +80,7 @@ The currently verified handler shape is:
 | `$B2` | `$80A935` | One 16-bit value |
 | `$B3` | `$80ABCD` | One 16-bit value |
 | `$B4` | `$80A011` | One 16-bit value, then switches text stream |
-| `$B5` | `$80A02A` | One byte selector |
+| `$B5` | `$80A02A` | One selector byte plus a variable `$FF`-terminated descriptor |
 | `$B6` | `$80A04E` | No immediate payload observed |
 | `$B7` | `$80A1C2` | Variable-length descriptor, terminator/shape still being traced |
 | `$B8/$B9` | `$80A356/$80A35B` | Layout mode markers; follow-up payload is context-dependent |

@@ -4549,7 +4549,7 @@ PTR16_809DA8:
   dw CODE_80A935                            ; $809DAC | $B2
   dw CODE_80ABCD                            ; $809DAE | $B3
   dw CODE_80A011                            ; $809DB0 | $B4
-  dw CODE_80A02A                            ; $809DB2 | $B5: one-byte selector
+  dw CODE_80A02A                            ; $809DB2 | $B5: selector + $FF-terminated descriptor
   dw CODE_80A04E                            ; $809DB4 | $B6
   dw CODE_80A1C2                            ; $809DB6 | $B7
   dw CODE_80A356                            ; $809DB8 | $B8
@@ -4978,7 +4978,7 @@ CODE_80A020:
 
 
 CODE_80A02A:
-  ; $B5 handler: consume one selector byte, not a 16-bit text pointer.
+  ; $B5 handler: selector followed by a variable descriptor ending in $FF.
   STZ.W $7C52                               ; $80A02A |
   LDX.W $7C16                               ; $80A02D |
   TXA                                       ; $80A030 |

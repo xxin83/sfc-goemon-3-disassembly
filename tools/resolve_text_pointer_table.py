@@ -49,8 +49,11 @@ def scan_nested_offsets(data: bytes, start: int, window: int):
             edges.append((pos - start, command, target, "copy"))
             pos += 3
         elif command == 0xB5:
-            # The $80A02A handler consumes one selector byte after $B5.
-            pos += 2
+            # $80A02A reads a selector and $80A063 consumes a descriptor
+            # through its $FF terminator. Do not scan descriptor bytes as
+            # independent text/compression commands.
+            terminator = data.find(b"\xFF", pos + 1, end)
+            pos = end if terminator < 0 else terminator + 1
         elif 0xE0 <= command <= 0xEF:
             pos += 2
         else:
