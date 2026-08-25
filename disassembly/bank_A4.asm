@@ -1,3 +1,4 @@
 org $A48000
 
-incbin ../assets/bank_A4.bin
+  incsrc data_bankA4_sources.asm
+incbin ../assets/bank_A4.bin:$7FC4..$8000   ; $A4FFC4 |
