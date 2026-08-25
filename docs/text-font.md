@@ -40,6 +40,19 @@ of in-place growth.  Adding a meaningful Chinese glyph set therefore requires
 relocating the compressed block or adding another VRAM upload; it cannot be
 solved by putting more bytes into the existing slot.
 
+For a larger replacement, `tools/relocate_system_font.py` expands the LoROM to
+4 MiB, writes the compressed block at a new bank boundary, and updates the
+24-bit source pointer stored at `$888020`.  The old block is left untouched:
+
+```text
+python tools/relocate_system_font.py goemon3.sfc edited-font.chr goemon3-expanded.sfc --target 0x3F0000
+```
+
+The relocation path is verified by decompressing the new pointer target and
+comparing all `0x600` output bytes with the edited CHR input.  The original
+2 MiB ROM remains unchanged; the expanded ROM necessarily has a different
+hash and must be tested separately in the emulator.
+
 The runtime table has single-byte entries for `$00-$AF`.  The `$88-$AF`
 entries are remapped through the extended map, but they still resolve to a
 single normalized table entry.  The `$B0-$BA` handlers are layout and control
