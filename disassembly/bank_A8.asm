@@ -1,6 +1,6 @@
 org $A88000
 
-incbin ../assets/bank_A8.bin:$0000..$7C80   ; $A88000 |
+incsrc data_bankA8_sources.asm
 
 CODE_FL_A8FC80:
   LDA.W $0046,X                             ; $A8FC80 |

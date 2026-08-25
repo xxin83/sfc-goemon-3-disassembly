@@ -169,3 +169,7 @@ gaps and bank tail remain raw.
 Bank `$A7` now has 51 bounded referenced blocks in
 `disassembly/data_bankA7_sources.asm`, ending at `$A7D313`; the remaining
 gaps and bank tail remain raw.
+
+Bank `$A8` now has 77 bounded referenced blocks in
+`disassembly/data_bankA8_sources.asm`, ending at `$A8FC3D`; the remaining
+gaps before the bank's code remain raw.
