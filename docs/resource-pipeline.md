@@ -165,3 +165,7 @@ named asset records and verify each resource table against this pipeline.
 Bank `$A6` now has 43 referenced compressed blocks in
 `disassembly/data_bankA6_sources.asm`, ending at `$A6FFE2`; the remaining
 gaps and bank tail remain raw.
+
+Bank `$A7` now has 51 bounded referenced blocks in
+`disassembly/data_bankA7_sources.asm`, ending at `$A7D313`; the remaining
+gaps and bank tail remain raw.

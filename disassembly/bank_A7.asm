@@ -1,3 +1,3 @@
 org $A78000
 
-incbin ../assets/bank_A7.bin
+incsrc data_bankA7_sources.asm
