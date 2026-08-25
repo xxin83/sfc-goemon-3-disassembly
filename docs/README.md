@@ -3,6 +3,7 @@
 - [Asset Table Format](asset-table.md)
 - [Konami SNES Compression Format](konami-snes-compression.md)
 - [Text Format](text-format.md)
+- [Text Font](text-font.md)
 - [Text Pointer Table](goemon3-text-pointer-table.md)
 - [Resource Pipeline](resource-pipeline.md)
 - [Resource Transfer Index](resource-index.tsv)
