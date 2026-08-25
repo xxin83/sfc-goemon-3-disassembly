@@ -26,8 +26,8 @@ python tools/resolve_text_pointer_table.py base.sfc \
   --output docs/text-pointer-table.tsv
 ```
 
-The parser intentionally reports nested references instead of decoding them
-as ordinary characters.  It reports the observed `$B5` command separately;
-its two-byte argument still needs runtime confirmation.  Other `B0`-`BF`
-bytes are not treated as pointers because `$B2` is used as a formatting command
-in the same stream.
+The parser intentionally reports copy-source references instead of decoding
+them as ordinary characters. Runtime tracing shows that `$B5` is a normal
+extended token, not a two-byte pointer command. The upper-level reader gives
+special treatment to `$B0/$B1` and `$B8/$B9` in specific contexts, but those
+payloads are not classified as text pointers here.

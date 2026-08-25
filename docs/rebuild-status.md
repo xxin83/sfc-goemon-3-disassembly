@@ -22,12 +22,12 @@ sources produces the same SHA-1 as `base.sfc`:
 
 ## Not Yet Runtime-Confirmed
 
-- The exact semantics of `$B5` and its two-byte argument.
+- The exact semantics of the context-dependent `$B0/$B1/$B8/$B9` payloads.
 - Record termination and the complete grammar for `$B0`-`$EF` formatting
   commands.
 - The full relationship between the text records, their graphics resources,
   and the runtime decompression/upload path.
 
-The resolver deliberately does not label `$B2` formatting operands as text
-pointers.  Runtime tracing is required before converting those commands into
-an editable high-level representation.
+The resolver deliberately does not label `$B0-$BF` operands as text pointers.
+Runtime tracing is required before converting the context-dependent commands
+into an editable high-level representation.

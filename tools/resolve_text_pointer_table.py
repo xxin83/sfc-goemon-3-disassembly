@@ -34,10 +34,9 @@ def text_offset_to_snes(offset: int) -> int:
 def scan_nested_offsets(data: bytes, start: int, window: int):
     """Return copy-source offsets without pretending every byte is text.
 
-    F0-FF is documented as a three-byte copy command.  B5 is retained as an
-    observed special command with a two-byte argument.  Other B0-BF bytes are
-    formatting commands in this stream and are not treated as pointers without
-    runtime evidence.
+    F0-FF is documented as a three-byte copy command.  B0-BF values are left
+    as stream tokens; the runtime handles some of them in the caller based on
+    context, and they are not treated as pointers here.
     The scan is bounded because records are not all sorted by offset.
     """
     end = min(len(data), start + window)
@@ -48,10 +47,6 @@ def scan_nested_offsets(data: bytes, start: int, window: int):
         if 0xF0 <= command <= 0xFF and pos + 2 < end:
             target = data[pos + 1] | (data[pos + 2] << 8)
             edges.append((pos - start, command, target, "copy"))
-            pos += 3
-        elif command == 0xB5 and pos + 2 < end:
-            target = data[pos + 1] | (data[pos + 2] << 8)
-            edges.append((pos - start, command, target, "special"))
             pos += 3
         elif 0xE0 <= command <= 0xEF:
             pos += 2

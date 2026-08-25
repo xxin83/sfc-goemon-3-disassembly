@@ -60,18 +60,13 @@ The following values have special meanings:
 | 0x17 | Switch to red text     |
 | 0x18 | Space                  |
 
-### Special Sequences (0xB0-0xBF)
+### Extended Tokens (0xB0-0xBF)
 
-These sequences contain additional data associated with the text.
-
-| Code | Command          | Extra Bytes | Description                                        |
-| ---- | ---------------- | ----------: | -------------------------------------------------- |
-| 0xB5 | Runtime-dependent | 2           | Observed in pointer-table records; unconfirmed    |
-
-`$B5` is observed at the start of records referenced by the table at
-`$87C28F`. Its two-byte payload must not be treated as a text pointer until
-runtime tracing confirms that behavior. The previous `$B4 = Next Text`
-description was not supported by the current ROM evidence and is removed.
+These values are returned as stream tokens by `get_next_char`. The upper-level
+reader handles some values in context: `$B0/$B1` and `$B8/$B9` consume an
+additional 16-bit value in the routines around `$80A3EC` and `$80A398`.
+Their payload semantics are not yet fully named. `$B5`, which occurs at the
+start of the pointer-table records, is not a two-byte pointer command.
 
 ### Compression Commands (0xC0-0xFF)
 
