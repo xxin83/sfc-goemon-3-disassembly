@@ -5,6 +5,11 @@ The record header begins at `$87C289`; the 16-bit text-offset table begins at
 `7E 55`, which resolves to offset `$557E` and then to file offset `$1B557E`
 (`$B6D57E` in the SNES address space).
 
+In the disassembly source these bytes are now exposed as
+`TextRecordTableHeader_87C289` and `TextRecordPointerTable_87C28F` in
+`disassembly/bank_87.asm`.  The source uses `dw` for the 27 little-endian
+offsets and assembles byte-for-byte identically to the baseline ROM.
+
 The target is not a flat text stream.  Its records contain special commands
 and `F0`-`FF` copy commands whose two-byte arguments reference another text
 offset.  Therefore text extraction must preserve a graph of references:
