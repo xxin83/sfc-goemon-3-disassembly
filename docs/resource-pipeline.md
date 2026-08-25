@@ -41,6 +41,10 @@ interleaving flag set, matching the next source pointer exactly.
 `$969E44-$969F02` is extracted; the following bytes up to `$96A203` are not
 assumed to belong to that resource.
 
+`SPRITE_96A203` and `VRAM_96A2FF` are consecutive complete blocks with header
+sizes `$00FC` and `$00C3`; both are stored in
+`disassembly/data_bank96_96a203.asm`.
+
 ## Decompression
 
 `parse_block_header` at `$84BCBA` reads the decompressed block size and source
