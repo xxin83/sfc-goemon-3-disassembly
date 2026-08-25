@@ -1,3 +1,4 @@
 org $998000
 
-incbin ../assets/bank_99.bin
+  incsrc data_bank99_sources.asm
+incbin ../assets/bank_99.bin:$7C2D..$8000   ; $99FC2D |
