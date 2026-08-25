@@ -4544,17 +4544,17 @@ CODE_JP_809D9B:
   JMP.W ($0000)                             ; $809DA5 |
 
 PTR16_809DA8:
-  dw CODE_809F04                            ; $809DA8 |
-  dw CODE_809F77                            ; $809DAA |
-  dw CODE_80A935                            ; $809DAC |
-  dw CODE_80ABCD                            ; $809DAE |
-  dw CODE_80A011                            ; $809DB0 |
-  dw CODE_80A02A                            ; $809DB2 |
-  dw CODE_80A04E                            ; $809DB4 |
-  dw CODE_80A1C2                            ; $809DB6 |
-  dw CODE_80A356                            ; $809DB8 |
-  dw CODE_80A35B                            ; $809DBA |
-  dw CODE_JP_80A344                         ; $809DBC |
+  dw CODE_809F04                            ; $809DA8 | $B0
+  dw CODE_809F77                            ; $809DAA | $B1
+  dw CODE_80A935                            ; $809DAC | $B2
+  dw CODE_80ABCD                            ; $809DAE | $B3
+  dw CODE_80A011                            ; $809DB0 | $B4
+  dw CODE_80A02A                            ; $809DB2 | $B5: one-byte selector
+  dw CODE_80A04E                            ; $809DB4 | $B6
+  dw CODE_80A1C2                            ; $809DB6 | $B7
+  dw CODE_80A356                            ; $809DB8 | $B8
+  dw CODE_80A35B                            ; $809DBA | $B9
+  dw CODE_JP_80A344                         ; $809DBC | $BA
 
 CODE_JP_809DBE:
   DEC A                                     ; $809DBE |
@@ -4978,6 +4978,7 @@ CODE_80A020:
 
 
 CODE_80A02A:
+  ; $B5 handler: consume one selector byte, not a 16-bit text pointer.
   STZ.W $7C52                               ; $80A02A |
   LDX.W $7C16                               ; $80A02D |
   TXA                                       ; $80A030 |

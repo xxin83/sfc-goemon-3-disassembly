@@ -65,8 +65,10 @@ The following values have special meanings:
 These values are returned as stream tokens by `get_next_char`. The upper-level
 reader handles some values in context: `$B0/$B1` and `$B8/$B9` consume an
 additional 16-bit value in the routines around `$80A3EC` and `$80A398`.
-Their payload semantics are not yet fully named. `$B5`, which occurs at the
-start of the pointer-table records, is not a two-byte pointer command.
+The dispatch table at `$809DA8` maps `$B0-$BA` to separate handlers. `$B5`
+maps to `$80A02A`, consumes one selector byte, and sets the text-layout state
+at `$7C4C`; it is not a two-byte pointer command. The remaining payload
+semantics are not yet fully named.
 
 ### Compression Commands (0xC0-0xFF)
 
